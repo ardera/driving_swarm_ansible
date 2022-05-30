@@ -1,0 +1,14 @@
+---
+- name: Create SSH-Keypair if none exists
+  hosts: all
+  tasks:
+    - name: generate Keypair
+      community.crypto.openssh_keypair:
+        regenerate: never
+        path: ~/.ssh/id_rsa
+
+- name: Install driving_swarm_infrastructure and requirements
+  hosts: all
+  gather_facts: yes
+  roles:
+    - common
